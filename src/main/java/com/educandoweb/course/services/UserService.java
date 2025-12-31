@@ -38,7 +38,7 @@ public class UserService {
         try {
             repository.deleteById(id);
         } catch (EmptyResultDataAccessException e) {
-
+            throw new RuntimeException(e.getMessage());
         } catch (DataIntegrityViolationException e) {
             throw new DatabaseException(e.getMessage());
         }
@@ -53,7 +53,6 @@ public class UserService {
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
-
     }
 
     private void updateData(User entity, User obj) {
